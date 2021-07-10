@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-FastfoodsimulatorApplication<fastfoodsimulator>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "br.com.ufc.fastfoodsimulator.FastfoodsimulatorApplication",
+      "projectName": "fastfoodsimulator",
+      "args": ""
+    }
+  ]
+}
