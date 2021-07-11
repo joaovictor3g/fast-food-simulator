@@ -2,12 +2,12 @@ package com.ufc.fastfoodsimulator.entity;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
+@Entity
+@Table(name="cook")
 public class Cook {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -19,10 +19,14 @@ public class Cook {
     @Column
     private LocalDate birthDate;
 
-    public Cook(String name, String cpf, LocalDate birthDate) {
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    private List<Order> orders;
+
+    public Cook(String name, String cpf, LocalDate birthDate, List<Order> orders) {
         this.name = name;
         this.cpf = cpf;
         this.birthDate = birthDate;
+        this.orders = orders;
     }
 
     public Cook() {}

@@ -1,18 +1,18 @@
-package com.ufc.fastfoodsimulator.entity;
+package com.ufc.fastfoodsimulator.DTO;
 
+import com.ufc.fastfoodsimulator.entity.Customer;
+import com.ufc.fastfoodsimulator.entity.Order;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
-@Entity
-@Table(name="customer")
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
+public class CustomerRequest {
     @Column
     @NotBlank
     private String name;
@@ -22,11 +22,10 @@ public class Customer {
     private String birthDate;
     @Email
     private String email;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private List<Order> orders;
 
-    public Customer(@NotBlank String name, @CPF String cpf, String birthDate, @Email String email, List<Order> orders) {
+    public CustomerRequest(@NotBlank String name, @CPF String cpf, String birthDate, @Email String email, List<Order> orders) {
+        super();
         this.name = name;
         this.cpf = cpf;
         this.birthDate = birthDate;
@@ -34,16 +33,8 @@ public class Customer {
         this.orders = orders;
     }
 
-    public Customer() {
+    public CustomerRequest() {
 
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -70,13 +61,7 @@ public class Customer {
         this.birthDate = birthDate;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", birthDate=" + birthDate +
-                '}';
+    public Customer toModel() {
+        return new Customer(this.name, this.cpf, this.birthDate, this.email, this.orders);
     }
 }
