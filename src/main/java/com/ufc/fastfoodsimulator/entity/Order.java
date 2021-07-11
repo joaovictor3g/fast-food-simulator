@@ -10,6 +10,7 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name="order_id")
     private long id;
     @Column
     @NotBlank
@@ -17,7 +18,7 @@ public class Order {
     @PastOrPresent
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "cook")
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Cook> cookList;
 
     @ManyToOne
