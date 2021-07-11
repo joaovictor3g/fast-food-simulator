@@ -4,10 +4,7 @@ import com.ufc.fastfoodsimulator.entity.Customer;
 import com.ufc.fastfoodsimulator.entity.Order;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
@@ -22,6 +19,7 @@ public class CustomerRequest {
     private String birthDate;
     @Email
     private String email;
+    @OneToMany
     private List<Order> orders;
 
     public CustomerRequest(@NotBlank String name, @CPF String cpf, String birthDate, @Email String email, List<Order> orders) {

@@ -12,6 +12,7 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name="customer_id")
     private int id;
     @Column
     @NotBlank
@@ -23,7 +24,7 @@ public class Customer {
     @Email
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Order> orders;
 
     public Customer(@NotBlank String name, @CPF String cpf, String birthDate, @Email String email, List<Order> orders) {

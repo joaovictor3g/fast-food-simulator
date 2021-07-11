@@ -11,6 +11,7 @@ import java.util.List;
 public class Cook {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name="cook_id")
     private int id;
     @Column
     private String name;
@@ -19,7 +20,7 @@ public class Cook {
     @Column
     private LocalDate birthDate;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Order> orders;
 
     public Cook(String name, String cpf, LocalDate birthDate, List<Order> orders) {
