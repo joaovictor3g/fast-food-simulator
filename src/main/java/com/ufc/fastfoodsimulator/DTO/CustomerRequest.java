@@ -59,6 +59,10 @@ public class CustomerRequest {
         this.birthDate = birthDate;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public Customer toModel() {
         return new Customer(this.name, this.cpf, this.birthDate, this.email, this.orders);
     }

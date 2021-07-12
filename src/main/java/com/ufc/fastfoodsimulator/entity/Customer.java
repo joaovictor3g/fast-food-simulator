@@ -13,7 +13,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="customer_id")
-    private int id;
+    private Long id;
     @Column
     @NotBlank
     private String name;
@@ -39,12 +39,8 @@ public class Customer {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -77,6 +73,7 @@ public class Customer {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", cpf='" + cpf + '\'' +
+                ", email='" + email + '\'' +
                 ", birthDate=" + birthDate +
                 '}';
     }
